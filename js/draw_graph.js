@@ -26,3 +26,17 @@ function draw_graph(node_count)
 		i++;
 	}
 }
+
+function clear_graph()
+{
+	let nodes;
+	let i;
+
+	nodes = document.getElementsByClassName("node");
+	i = 0;
+	while (i < nodes.length)
+	{
+		nodes[i].remove();
+		i++;
+	}
+}
