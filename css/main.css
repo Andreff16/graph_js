@@ -9,15 +9,14 @@ body {
 }
 
 .container {
-	height: 600px;
 	width: 100%;
 	padding: 50px 0;
 	box-sizing: border-box;
 }
 
 #map {
-	width: 500px;
-	height: 500px;
+	width: 548px;
+	height: 548px;
 	margin: 0 auto;
 	background-color: #fff;
 	border: 1px solid black;
@@ -31,4 +30,40 @@ body {
 	border: 1px solid black;
 	background-color: #000;
 	position: absolute;
+	z-index: 100;
+}
+
+.node:hover {
+	cursor: pointer;
+	background-color: orange;
+}
+
+#map_control {
+	margin: auto;
+	width: 550px;
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-around;
+}
+
+#draw_graph_btn {
+	width: 150px;
+	height: 50px;
+	cursor: pointer;
+}
+
+#nodes_nbr {
+	width: 150px;
+	height: 50px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+}
+
+.map_road {
+	position: absolute;
+	background-color: black;
+	border: none;
+	height: 2px;
+	z-index: 50;
 }
