@@ -24,67 +24,37 @@ function mx_fill(node_count)
 		j = 0;
 		while (j < node_count)
 		{
-			mx[i][j] = Math.floor(Math.random() * 10) % 2;
+			mx[i][j] = (Math.floor(Math.random() * 10) % 5) == 0;
 			j++;
 		}
 		i++;
 	}
-	// mx_show(mx);
 	return (mx);
 }
 
 function draw_node(node)
 {
-	let html_node;
+	let new_node;
 
-	html_node = document.createElement("span");
-	html_node.className = "node";
-	html_node.style.left = node.x + "px";
-	html_node.style.bottom = node.y + "px";
-	document.getElementById("map").appendChild(html_node);
-}
-
-function get_line_width(node1, node2)
-{
-	let a;
-	let b;
-
-	a = Math.pow(Math.abs(node1.x - node2.x), 2);
-	b = Math.pow(Math.abs(node1.y - node2.y), 2);
-	return (Math.sqrt(a + b));
-}
-
-function get_line_deg(node1, node2)
-{
-	let rad;
-
-	rad = Math.atan((node2.y - node1.y) / (node1.x - node2.x))
-	return ((rad * 180) / Math.PI);
-}
-
-function get_line_x(node1, node2)
-{
-	let w;
-	let c;
-	let g;
-
-	w = get_line_width(node1, node2);
-	c = Math.cos(get_line_deg(node1, node2) * Math.PI / 180);
-	g = (w / 2) * c;
-	return (Math.min(node1.x, node2.x) - ((w / 2) - g) + 5);
+	new_node = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+	new_node.setAttributeNS(null, "r", "5px");
+	new_node.setAttributeNS(null, "cx", node.x + "px");
+	new_node.setAttributeNS(null, "cy", node.y + "px");
+	new_node.setAttributeNS(null, "class", "svg_node");
+	document.getElementById("svg_nodes").appendChild(new_node);
 }
 
 function draw_line(node1, node2)
 {
-	let line;
+	let new_line;
 
-	line = document.createElement("hr");
-	line.className = "map_road";
-	line.style.width = get_line_width(node1, node2) + "px";
-	line.style.left = get_line_x(node1, node2) + "px";
-	line.style.bottom = (node1.y + 5 - (node1.y - node2.y) / 2) + "px";
-	line.style.transform = "rotate(" + get_line_deg(node1, node2) + "deg)";
-	document.getElementById("map").appendChild(line);
+	new_line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+	new_line.setAttributeNS(null, "x1", node1.x + "px");
+	new_line.setAttributeNS(null, "y1", node1.y + "px");
+	new_line.setAttributeNS(null, "x2", node2.x + "px");
+	new_line.setAttributeNS(null, "y2", node2.y + "px");
+	new_line.setAttributeNS(null, "stroke", "black");
+	document.getElementById("svg_lines").appendChild(new_line);
 }
 
 function draw_graph(node_count)
@@ -125,25 +95,13 @@ function clear_graph()
 {
 	let nodes;
 	let roads;
-	let i;
-	let l;
 
-	nodes = document.getElementsByClassName("node");
-	roads = document.getElementsByClassName("map_road");
-	l = nodes.length;
-	i = 0;
-	while (i < l)
-	{
-		nodes[0].remove();
-		i++;
-	}
-	l = roads.length;
-	i = 0;
-	while (i < l)
-	{
-		roads[0].remove();
-		i++;
-	}
+	nodes = document.getElementById("svg_nodes");
+	roads = document.getElementById("svg_lines");
+	while (nodes.firstChild)
+		nodes.removeChild(nodes.firstChild);
+	while (roads.firstChild)
+		roads.removeChild(roads.firstChild);
 }
 
 function get_nodes_nbr()

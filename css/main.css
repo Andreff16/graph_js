@@ -23,19 +23,24 @@ body {
 	position: relative;
 }
 
-.node {
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	border: 1px solid black;
-	background-color: #000;
+#svg_nodes, #svg_lines{
 	position: absolute;
-	z-index: 100;
+	width: 100%;
+	height: 100%;
 }
 
-.node:hover {
+#svg_nodes {
+	z-index: 100;
+	fill: black;
+}
+
+.svg_node:hover {
+	fill: red;
 	cursor: pointer;
-	background-color: orange;
+}
+
+#svg_lines {
+	z-index: 50;
 }
 
 #map_control {
@@ -58,12 +63,4 @@ body {
 	height: 50px;
 	padding: 10px 20px;
 	box-sizing: border-box;
-}
-
-.map_road {
-	position: absolute;
-	background-color: black;
-	border: none;
-	height: 2px;
-	z-index: 50;
 }
