@@ -41,6 +41,7 @@ function draw_node(node)
 	new_node.setAttributeNS(null, "cx", node.x + "px");
 	new_node.setAttributeNS(null, "cy", node.y + "px");
 	new_node.setAttributeNS(null, "class", "svg_node");
+	new_node.style.fill = "black";
 	document.getElementById("svg_nodes").appendChild(new_node);
 }
 
@@ -94,14 +95,15 @@ function draw_graph(node_count)
 function clear_graph()
 {
 	let nodes;
-	let roads;
+	let lines;
 
+	clear_road();
 	nodes = document.getElementById("svg_nodes");
-	roads = document.getElementById("svg_lines");
+	lines = document.getElementById("svg_lines");
 	while (nodes.firstChild)
 		nodes.removeChild(nodes.firstChild);
-	while (roads.firstChild)
-		roads.removeChild(roads.firstChild);
+	while (lines.firstChild)
+		lines.removeChild(lines.firstChild);
 }
 
 function get_nodes_nbr()
@@ -115,4 +117,35 @@ function get_nodes_nbr()
 		return (nbr);
 	else
 		return (10);
+}
+
+function clear_road()
+{
+	let roads;
+
+	roads = document.getElementById("svg_road");
+	while (roads.firstChild)
+		roads.removeChild(roads.firstChild);
+}
+
+function find_road(nodes)
+{
+	let node1 = {
+		x: nodes[0].getAttribute("cx"),
+		y: nodes[0].getAttribute("cy")
+	};
+	let node2 = {
+		x: nodes[1].getAttribute("cx"),
+		y: nodes[1].getAttribute("cy")
+	};
+	let new_line;
+
+	new_line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+	new_line.setAttributeNS(null, "x1", node1.x);
+	new_line.setAttributeNS(null, "y1", node1.y);
+	new_line.setAttributeNS(null, "x2", node2.x);
+	new_line.setAttributeNS(null, "y2", node2.y);
+	new_line.setAttributeNS(null, "stroke", "blue");
+	new_line.setAttributeNS(null, "stroke-width", "3px");
+	document.getElementById("svg_road").appendChild(new_line);
 }

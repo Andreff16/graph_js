@@ -23,7 +23,7 @@ body {
 	position: relative;
 }
 
-#svg_nodes, #svg_lines{
+#svg_nodes, #svg_lines, #svg_road{
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -43,24 +43,66 @@ body {
 	z-index: 50;
 }
 
+#svg_road {
+	z-index: 60;
+}
+
 #map_control {
-	margin: auto;
+	margin: 25px auto 0;
 	width: 550px;
-	padding: 20px;
+	padding: 15px 0;
 	box-sizing: border-box;
 	display: flex;
 	justify-content: space-around;
+	border: 1px solid #dbdbdb;
+	border-radius: 15px;
+	box-shadow: 0 10px 30px #ccc;
+	position: relative;
 }
 
 #draw_graph_btn {
 	width: 150px;
-	height: 50px;
+	height: 40px;
 	cursor: pointer;
+	background: #fff;
+	color: #5e54c0;
+	font-size: 18px;
+	border: 1px solid #5e54c0;
+	border-radius: 14px;
+	transition: 0.2s;
+}
+
+#draw_graph_btn:hover {
+	border: 2px solid #5e54c0;
 }
 
 #nodes_nbr {
 	width: 150px;
-	height: 50px;
-	padding: 10px 20px;
+	height: 40px;
+	padding: 10px 0;
 	box-sizing: border-box;
+	height: 26px;
+	-webkit-appearance: none;
+	margin: 10px 0;
+}
+
+#nodes_nbr:focus {
+	outline: none;
+}
+
+#nodes_nbr::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 14px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #5e54c0;
+  background: #5e54c0;
+  border-radius: 14px;
+  border: 0px solid #000000;
+}
+
+#nodes_nbr_show {
+	position: absolute;
+	bottom: 5px;
+	right: 185px;
 }
